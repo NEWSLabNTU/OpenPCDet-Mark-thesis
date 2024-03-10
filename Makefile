@@ -1,27 +1,19 @@
-.PHONY: build clean
+.PHONY: default prepare build clean
 
-ENPTY_TARGETS = .install_torch .install_pcdet .build_poetry
+default:
+	@echo 'Usage:'
+	@echo '    make prepare'
+	@echo '    make build'
+	@echo '    make clean'
 
-default: build
+prepare:
+	curl -sSL https://install.python-poetry.org | python3 -
 
-build: .install_torch .install_pcdet .build_poetry
-
-.build_poetry:
+build:
 	poetry install
-	touch .build_poetry
-
-.install_torch: .build_poetry
-	poetry run \
-	pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 torchaudio==0.13.0+cu117 -f https://download.pytorch.org/whl/cu117/torch_stable.html
-	touch .install_torch
-
-.install_pcdet: .install_torch
-	poetry run python setup.py develop
-	touch .install_pcdet
+	poetry build
 
 clean:
-	rm -rf $(ENPTY_TARGETS)
-	rm -rf build
 	rm -f ./poetry.lock
 	poetry env list | cut -f1 -d' ' | while read name; do \
 		poetry env remove "$$name"; \
