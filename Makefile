@@ -11,6 +11,7 @@ prepare:
 
 build:
 	poetry install
+	poetry run python setup.py develop
 	poetry build
 
 clean:
