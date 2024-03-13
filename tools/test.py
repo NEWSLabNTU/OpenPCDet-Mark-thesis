@@ -18,6 +18,11 @@ from pcdet.models import build_network
 from pcdet.utils import common_utils
 
 
+WORK_DIR = Path(os.getcwd()).resolve()
+SCRIPT_DIR = Path(__file__).resolve().parent
+if SCRIPT_DIR != WORK_DIR:
+    raise ValueError(f"Please change to {WORK_DIR} first")
+
 def parse_config():
     parser = argparse.ArgumentParser(description='arg parser')
     parser.add_argument('--cfg_file', type=str, default=None,
