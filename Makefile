@@ -10,6 +10,7 @@ prepare:
 	curl -sSL https://install.python-poetry.org | python3 -
 
 build:
+	poetry lock
 	poetry install
 	poetry run python setup.py develop
 	poetry build
