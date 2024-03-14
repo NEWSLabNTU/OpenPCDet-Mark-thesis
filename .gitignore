@@ -1,18 +1,28 @@
+# dirs
+/output
+/data
+/build
+
+# binaries
 **__pycache__**
-**build**
 **egg-info**
 **dist**
 *.pyc
-venv/
-*.idea/
 *.so
 *.pth
 *.pkl
 *.zip
 *.bin
-output
-version.py
+/pcdet/version.py
+
+# editor
+*~
+.*~
+\#*#
+*.swo
+*.swp
 **.vscode**
-/.install_pcdet
-/.install_torch
+*.idea/
+
+# poetry
 /poetry.lock
